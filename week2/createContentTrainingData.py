@@ -6,6 +6,10 @@ import os
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+import pandas as pd
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 def transform_name(product_name):
     # IMPLEMENT
     return product_name
@@ -63,7 +67,27 @@ if __name__ == '__main__':
     print("Writing results to %s" % output_file)
     with multiprocessing.Pool() as p:
         all_labels = tqdm(p.imap(_label_filename, files), total=len(files))
+
+        #define df of product + cat rows
+        df = pd.DataFrame(columns = ['cat', 'name'])
+
+        #add each entry to dataframe
+        for label_list in all_labels:
+            df = df.append(pd.DataFrame(label_list, columns = ['cat', 'name']))
+
+        #calculate category count and define column based on it
+        df['cat_count'] = df.groupby('cat')['cat'].transform('count')
+
+        #keep elements of dataframe conditioned on minimum products per category
+        df_considered = df[df.cat_count >= min_products]
+
+        #define label_list and output to file
+        label_list = df_considered.values
         with open(output_file, 'w') as output:
-            for label_list in all_labels:
-                for (cat, name) in label_list:
-                    output.write(f'__label__{cat} {name}\n')
+            for (index, row) in df_considered.iterrows():
+                output.write(f'__label__{row["cat"]} {row["name"]}\n')
+
+        #with open(output_file, 'w') as output:
+            #for label_list in all_labels:
+                #for (cat, name) in label_list:
+                    #output.write(f'__label__{cat} {name}\n')

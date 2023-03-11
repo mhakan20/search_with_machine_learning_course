@@ -1,0 +1,38 @@
+Results before any type of improvement
+N       9669
+P@1     0.17
+R@1     0.17
+
+N       9669
+P@5     0.0546
+R@5     0.273
+
+After training for more rounds and with diff parameters
+
+N       9669
+P@1     0.657
+R@1     0.657
+
+N       9669
+P@5     0.168
+R@5     0.839
+
+After normalization and training on the same parameters
+
+N       9669
+P@1     0.651
+R@1     0.651
+
+N       9669
+P@5     0.168
+R@5     0.841
+
+After applying the minimu 500 prods per category(only 29 categories remaining)
+
+N       8473
+P@1     0.965
+R@1     0.965
+
+N       8473
+P@5     0.2
+R@5     0.998
