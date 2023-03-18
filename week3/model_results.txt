@@ -1,0 +1,21 @@
+Results for model trained on cats with at least 1k queries (50K train 10K test)
+374 categories
+
+N       10000
+P@1     0.522
+R@1     0.522
+
+N       10000
+P@5     0.154
+R@5     0.77
+
+Results for model trained on cats with at least 10K queries(50K train 10K test)
+58 categories
+
+N       10000
+P@1     0.619
+R@1     0.619
+
+N       10000
+P@5     0.174
+R@5     0.872

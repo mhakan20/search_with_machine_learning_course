@@ -1,0 +1,4 @@
+#Query check for Task 1
+
+              category                                              query  ...                                        split_query                                       final_query
+1855395  pcmcat144700050004  Beats By Dr. Dre- Monster Pro Over-the-Ear Hea...  ...  [beats, by, dr, dre, monster, pro, over, the, ...  beat by dr dre monster pro over the ear headphon
